@@ -9,4 +9,6 @@ public interface UserService {
 	public List<User> findAll();
 	
 	public String add(String username, String password, String email, int roleId);
+	
+	public String addRole(String name);
 }

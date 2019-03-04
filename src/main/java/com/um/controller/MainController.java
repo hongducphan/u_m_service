@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.um.model.Role;
 import com.um.model.User;
 import com.um.service.UserService;
 
@@ -27,25 +28,27 @@ public class MainController {
 		return userRepository.findAll();
 	}
 
-//	@GetMapping("/alluserswithrolename")
-//	public @ResponseBody List<User> getAllUsersWithRoleName() {
-//		return userRepository.findAllUserWithRolename();
-//	}
-
 	@PostMapping("/add")
 	public @ResponseBody String addNewUser(@RequestParam String username, @RequestParam String email,
 			@RequestParam String password, @RequestParam int roleId) {
+		Role role = new Role();
+		role.setId(1);
+		role.setName("Administrator");
+		
 		User user = new User();
 		user.setUsername(username);
 		user.setPassword(password);
 		user.setEmail(email);
+		user.setRole(role);
 		userRepository.add(username, password, email, roleId);
 		return "Saved";
 	}
-//
-//	@DeleteMapping("/delete")
-//	public @ResponseBody String deleteUser(@RequestParam String username) {
-//		userRepository.deleteById(username);
-//		return "Deleted";
-//	}
+
+	@PostMapping("/addRole")
+	public @ResponseBody String addRole(@RequestParam String name) {
+		Role role = new Role();
+		role.setName(name);
+		userRepository.addRole(name);
+		return "Saved";
+	}
 }

@@ -22,6 +22,9 @@ public class Role {
 
 	@OneToOne(mappedBy = "role")
 	private User user;
+	
+	public Role() {
+	}
 
 	public int getId() {
 		return id;

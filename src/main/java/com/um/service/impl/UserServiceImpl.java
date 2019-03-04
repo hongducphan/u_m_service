@@ -7,6 +7,7 @@ import javax.persistence.TypedQuery;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
+import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -16,10 +17,11 @@ import com.um.model.User;
 import com.um.service.UserService;
 
 @Repository
+@Transactional
 public class UserServiceImpl implements UserService {
 
 	@Autowired
-	EntityManager em;
+	private EntityManager em;
 
 	@Override
 	public List<User> findAll() {
@@ -44,8 +46,18 @@ public class UserServiceImpl implements UserService {
 		user.setPassword(password);
 		user.setEmail(email);
 		user.setRole(role);
-		
+
 		em.persist(user);
+		return "Saved";
+	}
+
+	@Override
+	public String addRole(String name) {
+
+		Role role = new Role();
+		role.setName(name);
+		em.persist(role);
+
 		return "Saved";
 	}
 
