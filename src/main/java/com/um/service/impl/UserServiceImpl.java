@@ -1,4 +1,4 @@
-package com.um.daoimplementation;
+package com.um.service.impl;
 
 import java.util.List;
 
@@ -11,11 +11,11 @@ import javax.persistence.criteria.Root;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.um.dao.UserDAO;
 import com.um.model.User;
+import com.um.service.UserService;
 
 @Repository
-public class UserDAOImpl implements UserDAO {
+public class UserServiceImpl implements UserService {
 	
 	@Autowired
 	EntityManager em;

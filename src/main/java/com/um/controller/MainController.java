@@ -8,15 +8,15 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.um.dao.UserDAO;
 import com.um.model.User;
+import com.um.service.UserService;
 
 @CrossOrigin(maxAge = 3600)
 @RestController
 public class MainController {
 
 	@Autowired
-	private UserDAO userRepository;
+	private UserService userRepository;
 
 	@GetMapping("/test")
 	public @ResponseBody String test() {

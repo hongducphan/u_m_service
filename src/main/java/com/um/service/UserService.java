@@ -1,10 +1,10 @@
-package com.um.dao;
+package com.um.service;
 
 import java.util.List;
 
 import com.um.model.User;
 
-public interface UserDAO {
+public interface UserService {
 
 	public String testDaoPattern();
 	
