@@ -37,16 +37,12 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public String add(String username, String password, String email, int roleId) {
-		Role role = new Role();
-		role.setId(1);
-		role.setName("Administrator");
-
+		Role role = em.getReference(Role.class, roleId);
 		User user = new User();
 		user.setUsername(username);
 		user.setPassword(password);
 		user.setEmail(email);
 		user.setRole(role);
-
 		em.persist(user);
 		return "Saved";
 	}

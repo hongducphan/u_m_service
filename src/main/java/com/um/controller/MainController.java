@@ -31,15 +31,6 @@ public class MainController {
 	@PostMapping("/add")
 	public @ResponseBody String addNewUser(@RequestParam String username, @RequestParam String email,
 			@RequestParam String password, @RequestParam int roleId) {
-		Role role = new Role();
-		role.setId(1);
-		role.setName("Administrator");
-		
-		User user = new User();
-		user.setUsername(username);
-		user.setPassword(password);
-		user.setEmail(email);
-		user.setRole(role);
 		userRepository.add(username, password, email, roleId);
 		return "Saved";
 	}
