@@ -11,30 +11,42 @@ import javax.persistence.criteria.Root;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.um.model.Role;
 import com.um.model.User;
 import com.um.service.UserService;
 
 @Repository
 public class UserServiceImpl implements UserService {
-	
+
 	@Autowired
 	EntityManager em;
-
-	@Override
-	public String testDaoPattern() {
-		return "DAO Pattern";
-	}
 
 	@Override
 	public List<User> findAll() {
 		CriteriaBuilder cb = em.getCriteriaBuilder();
 		CriteriaQuery<User> cq = cb.createQuery(User.class);
-		
+
 		Root<User> user = cq.from(User.class);
 		CriteriaQuery<User> all = cq.select(user);
 		TypedQuery<User> allQuery = em.createQuery(all);
+
 		return allQuery.getResultList();
+	}
+
+	@Override
+	public String add(String username, String password, String email, int roleId) {
+		Role role = new Role();
+		role.setId(1);
+		role.setName("Administrator");
+
+		User user = new User();
+		user.setUsername(username);
+		user.setPassword(password);
+		user.setEmail(email);
+		user.setRole(role);
 		
+		em.persist(user);
+		return "Saved";
 	}
 
 }
