@@ -57,4 +57,13 @@ public class UserServiceImpl implements UserService {
 		return "Saved";
 	}
 
+	@Override
+	public User login(String username, String password) {
+		User user = em.find(User.class, username);
+		if(user == null) {
+			System.out.println("User not found!!!");
+		}
+		return user;
+	}
+
 }
