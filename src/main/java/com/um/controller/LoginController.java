@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.um.model.LoginForm;
+import com.um.model.User;
 import com.um.service.UserService;
 
 @RestController
@@ -15,8 +16,11 @@ public class LoginController {
 	private UserService userRepository;
 
 	@PostMapping("/login")
-	public @ResponseBody String login(@RequestBody LoginForm form) {
-		userRepository.login(form.getUsername(), form.getPassword());
-		return "Login successful!";
+	public @ResponseBody User login(@RequestBody LoginForm form) {
+		User user = userRepository.login(form.getUsername(), form.getPassword());
+		if(user == null) {
+			System.out.println("Invalid username or password!");
+		}
+		return user;
 	}
 }

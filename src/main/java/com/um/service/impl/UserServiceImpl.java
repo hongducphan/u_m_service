@@ -59,11 +59,7 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public User login(String username, String password) {
-		User user = em.find(User.class, username);
-		if(user == null) {
-			System.out.println("User not found!!!");
-		}
-		return user;
+		return em.find(User.class, username);
 	}
 
 }
