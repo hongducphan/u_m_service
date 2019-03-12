@@ -16,11 +16,11 @@ public class LoginController {
 	private UserService userRepository;
 
 	@PostMapping("/login")
-	public @ResponseBody User login(@RequestBody LoginForm form) {
+	public @ResponseBody String login(@RequestBody LoginForm form) {
 		User user = userRepository.login(form.getUsername(), form.getPassword());
 		if(user == null) {
-			System.out.println("Invalid username or password!");
+			return "Invalid username or password!";
 		}
-		return user;
+		return user.getUsername();
 	}
 }
