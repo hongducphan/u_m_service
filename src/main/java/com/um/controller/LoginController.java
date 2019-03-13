@@ -17,8 +17,8 @@ public class LoginController {
 
 	@PostMapping("/login")
 	public @ResponseBody String login(@RequestBody LoginForm form) {
-		User user = userRepository.login(form.getUsername(), form.getPassword());
-		if(user == null) {
+		User user = userRepository.findByUsername(form.getUsername());
+		if (user == null || !user.getPassword().equals(form.getPassword())) {
 			return "Invalid username or password!";
 		}
 		return user.getUsername();

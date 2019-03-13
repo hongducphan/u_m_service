@@ -6,7 +6,7 @@ import com.um.model.User;
 
 public interface UserService {
 	
-	public User login(String username, String password);
+	public User findByUsername(String username);
 	
 	public List<User> findAll();
 	

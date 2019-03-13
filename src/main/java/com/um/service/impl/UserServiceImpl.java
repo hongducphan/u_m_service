@@ -58,12 +58,8 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public User login(String username, String password) {
-		User user = em.find(User.class, username);
-		if(user != null && user.getPassword().equals(password)) {
-			return user;
-		}
-		return null;
+	public User findByUsername(String username) {
+		return em.find(User.class, username);
 	}
 
 }
